@@ -1,0 +1,24 @@
+<%= if !@post.draft || WebClientWeb.SessionView.admin?(@conn) do %>
+  <article>
+    <p class="float-right mx-10 lg:mx-40 mt-2 text-sm text-gray-400"><%= link gettext("< back"), to: "/" %></p>
+
+    <div class="post mb-10 mx-10 lg:mx-40" id={ @post.id } >
+      <div class="my-1 text-xl font-semibold text-gray-400 inline"><%= @post.title %>
+        <%= if @post.draft do %>
+          <span class="p-1 text-sm shadow bg-yellow-200"><%= gettext "draft" %></span>
+        <% end %>
+        </div>
+      <div class="mt-0 text-sm text-gray-400 inline">– <%= @post.author %>, <%= @post.date %></div>
+      <div class="markdown w-prose"><%= raw @post.body %></div>
+    </div>
+    <div class="mx-10 lg:mx-40 mt-10 mb-40 text-sm text-gray-400"><%= link gettext("< back"), to: "/" %></div>
+    <div class="clear-all h-30">&nbsp;</div>
+  </article>
+<% else %>
+  <p class="mx-10 lg:mx-40 mb-4 text-sm text-gray-600">
+    <%= gettext "You need to log in, in order to read this post." %>
+  </p>
+  <p class="mx-10 lg:mx-40 mb-4 text-sm text-gray-400"><%= link gettext("< back"), to: "/" %></p>
+<% end %>
+
+

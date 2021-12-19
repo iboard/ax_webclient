@@ -1,0 +1,74 @@
+<section class="hero">
+  <center>
+    <h1 class="title"><%= gettext "Welcome to %{name}", name: "Altex's WebClient!" %></h1>
+    <p class="text-gray-600"><%= gettext("An Elixir/Phoenix/Liveview Scaffold, by Andreas Altendorfer") %></p>
+  </center>
+</section>
+
+<section class="mx-10 lg:mx-40">
+  <%= if Plug.Conn.get_session(@conn, :current_user) do %>
+    <center>
+      <p class="font-semibold text-green-500"><%= gettext "You're logged in" %></p>
+    </center>
+  <% end %>
+  <article>
+    <p class="max-w-prose">
+    <.markdown body={ 
+    ~s"""
+    # Altex
+    
+    is a bunch of independent _mix projects_ which can be used in any Elixir
+    and Phoenix application. It supports a clean architecture and well structured
+    code.
+
+    ## Mix projects
+
+    - [axentity](https://hex.pm/packages/axentity)
+    - [axrepo](https://hex.pm/packages/axrepo)
+    - and this, [ax_webclient](https://hex.pm/packages/ax_webclient)
+
+    ## Dependencies
+
+    `ax_webclient` depends on `axrepo` which depends on `axentity`.
+    In `ax_webclient` it is sufficient to add `axrepo` to your `deps()` in
+    `mix.exs`.
+
+    ## No database
+
+    Frankly, I think databases are something obsolete nowadays. For a simple
+    web-application you usually don't need one. Therefore we implemented a 
+    simple _repository_ and _entity_ pattern in `axrepo` and `axentity`. 
+
+    Where an `Entity` is a wrapper
+    around any leagel Elixir term and `Repo` can store them wherever you want.
+
+    For a simple scaffold, the filesystem and memory of a modern server is more
+    than enough and with respond times less than 10ms, its also fast enough to store 
+    and serve our data.
+
+    ### dETS, Files
+
+    The following directories should exist in your runtime environment
+
+    ```bash
+    ./data/test/
+    ./data/dev/
+    ./data/prod/
+    ```
+
+    For each "table"/"store" created in `Altex.Repo` you will find a corresponding
+    file in these directories.
+
+    ## Altex WebClient
+
+    This here is a Phoenix 1.6 & Tailwind 3.0 application, using `axentity` and `axrepo`
+    to store user, authentication, and profiles. 
+
+    Other than that, we use 
+    _[dashbitco/nimble_publisher](https://github.com/dashbitco/nimble_publisher)_
+    for our simple blog.
+    """ } />
+    </p>
+  </article>
+</section>
+

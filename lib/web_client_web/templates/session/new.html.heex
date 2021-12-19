@@ -1,0 +1,20 @@
+<div class="mt-0 mx-5 lg:mx-40 sign-in">
+  <h1 class="title mb-10"><%= gettext "Sign in" %></h1>
+
+  <.form let={f} for={:request} as="request" class="flex-col">
+    <div class="control-group">
+      <%= label f, :username, gettext("Username") %>
+      <%= text_input f, :username, placeholder: gettext("Enter username or email") %>
+    </div>
+
+    <div class="control-group">
+      <%= label f, :password, gettext("Password") %>
+      <%= password_input f, :password, placeholder: gettext("Enter your password") %>
+    </div>
+
+    <div class="control-group">
+      <%= submit gettext("Sign in"), class: "button-default" %>
+    </div>
+  </.form>
+
+</div>

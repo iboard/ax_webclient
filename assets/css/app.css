@@ -1,0 +1,224 @@
+/* This file is for your main application CSS */
+
+/* Use Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* extended Tailwind definitions */
+body {
+  @apply m-0 p-0 bg-gray-100 text-gray-600 font-light;
+}
+
+p {
+  @apply text-xl;
+}
+
+a { @apply hover:underline; }
+
+.hero {
+  @apply bg-gray-200 p-10 rounded-md mx-10 mb-10 min-h-max shadow-lg;
+}
+.hero h1 { @apply font-bold; }
+.hero { @apply font-normal text-sm; }
+
+.inner-content {
+  @apply min-h-screen pt-5 bg-gray-50 mt-0 mb-5 sm:mx-10 md:mx-20 lg:mx-40 rounded shadow;
+}
+
+.title {
+  @apply text-4xl text-gray-600 drop-shadow-md;
+}
+
+header {
+  @apply m-0 
+    block
+    w-full z-50
+    flex flex-row w-full mt-0 gap-4 p-2 drop-shadow-md
+    bg-slate-600 text-gray-100 text-sm;
+}
+
+.logo { 
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
+footer {
+  @apply bg-slate-700 text-gray-100 text-sm;
+}
+
+form {
+  @apply p-10 border rounded-md shadow  flex gap-4 bg-white;
+}
+
+form label {
+  @apply p-1 h-10 font-normal;
+}
+
+form input {
+  @apply p-1 border h-10 rounded w-full bg-slate-50;
+}
+
+button {
+  @apply border p-2 rounded-md shadow hover:shadow-md;
+}
+
+button.button-default { @apply bg-blue-600 hover:bg-blue-900 text-gray-100 hover:drop-shadow; }
+
+.post { 
+  @apply pb-10 border-b; 
+}
+
+.markdown { @apply py-2; }
+.markdown h1 { @apply font-semibold text-4xl text-gray-500 py-2 drop-shadow-md; }
+.markdown h2 { @apply font-semibold text-3xl text-gray-600 pt-4 pb-2; }
+.markdown h3 { @apply font-semibold text-2xl text-gray-500 py-2; }
+.markdown h4 { @apply font-semibold text-xl text-gray-500 py-2; }
+.markdown p { @apply max-w-prose; }
+.markdown * strong { @apply font-semibold; }
+.markdown a { @apply text-sky-600 hover:underline; }
+
+.markdown blockquote { @apply mx-10 mt-10 mb-5; }
+.markdown blockquote p { @apply text-sm; }
+.markdown ul { @apply ml-10 text-lg list-disc indent-1; }
+
+/* Markdown classes */
+.markdown table {
+  @apply w-full my-4;
+}
+.markdown table tr { @apply border-b; }
+.markdown table td { @apply p-2; }
+
+.markdown code { @apply block p-2 rounded my-5 mx-3 border bg-slate-200 max-w-full overflow-x-auto; }
+code.makeup { @apply block p-2 rounded my-5 mx-3 border bg-slate-200 max-w-full overflow-x-auto; }
+
+code.inline { 
+  @apply mx-1 p-1 text-sm;
+  display: inline;
+}
+.elixir *.kd { @apply text-red-900; }
+.elixir *.k { @apply text-red-900; }
+.elixir *.nf { @apply text-blue-900; }
+.elixir *.s { @apply text-green-900; }
+.elixir *.ss { @apply text-red-900; }
+
+
+/* Original Phonix.css stuff. Maybe removed soon */
+/* Alerts and form errors used by phx.new */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  @apply m-10;
+}
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert p {
+  margin-bottom: 0;
+}
+.alert:empty {
+  display: none;
+}
+.invalid-feedback {
+  color: #a94442;
+  display: block;
+  margin: -1rem 0 2rem;
+}
+
+/* LiveView specific classes for your customization */
+.phx-no-feedback.invalid-feedback,
+.phx-no-feedback .invalid-feedback {
+  display: none;
+}
+
+.phx-click-loading {
+  opacity: 0.5;
+  transition: opacity 1s ease-out;
+}
+
+.phx-loading{
+  cursor: wait;
+}
+
+.phx-modal {
+  opacity: 1!important;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.phx-modal-content {
+  background-color: #fefefe;
+  margin: 15vh auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.phx-modal-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.phx-modal-close:hover,
+.phx-modal-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.fade-in-scale {
+  animation: 0.2s ease-in 0s normal forwards 1 fade-in-scale-keys;
+}
+
+.fade-out-scale {
+  animation: 0.2s ease-out 0s normal forwards 1 fade-out-scale-keys;
+}
+
+.fade-in {
+  animation: 0.2s ease-out 0s normal forwards 1 fade-in-keys;
+}
+.fade-out {
+  animation: 0.2s ease-out 0s normal forwards 1 fade-out-keys;
+}
+
+@keyframes fade-in-scale-keys{
+  0% { scale: 0.95; opacity: 0; }
+  100% { scale: 1.0; opacity: 1; }
+}
+
+@keyframes fade-out-scale-keys{
+  0% { scale: 1.0; opacity: 1; }
+  100% { scale: 0.95; opacity: 0; }
+}
+
+@keyframes fade-in-keys{
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out-keys{
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

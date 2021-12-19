@@ -1,5 +1,9 @@
 # WebClient for Altex
 
+[![Documentation](https://img.shields.io/badge/docs-hexpm-blue.svg)](http://hexdocs.pm/ax_webclient/)
+[![Elixir CI](https://github.com/iboard/ax_webclient/actions/workflows/elixir.yml/badge.svg)](https://github.com/iboard/ax_webclient/actions/workflows/elixir.yml)
+
+
 A basic web client for the Altex applications. This is a Phoenix application
 excluding ecto nut using Altex-modules by referencing them as a path-dependency
 until we have a releas where we have published each single Altex-project as a
@@ -14,3 +18,17 @@ Hex package.
   somewhere. Axrepo provides an In-Memory and a On-Disk implementation. If
   you think an application without a SQL-database isn't a real application,
   its up to you to just implement a SQL-implementation.
+
+
+
+[axentity]: https://github.com/iboard/axentity
+[CIB axentity]: https://github.com/iboard/axentity/actions/workflows/elixir.yml/badge.svg
+[DB axentity]: https://img.shields.io/badge/docs-hexpm-blue.svg
+
+[axrepo]: https://github.com/iboard/axrepo
+[CIB axrepo]: https://github.com/iboard/axrepo/actions/workflows/elixir.yml/badge.svg
+[DB axrepo]: https://img.shields.io/badge/docs-hexpm-blue.svg
+
+[ax_webclient]: https://github.com/iboard/ax_webclient
+[CIB ax_webclient]: https://github.com/iboard/ax_webclient/actions/workflows/elixir.yml/badge.svg
+[DB ax_webclient]: https://img.shields.io/badge/docs-hexpm-blue.svg

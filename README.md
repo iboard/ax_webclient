@@ -1,4 +1,4 @@
-# WebClient for Altex
+# WebClient for [Altex](https://github.com/iboard/altex)
 
 [![Documentation](https://img.shields.io/badge/docs-hexpm-blue.svg)](http://hexdocs.pm/ax_webclient/)
 [![Elixir CI](https://github.com/iboard/ax_webclient/actions/workflows/elixir.yml/badge.svg)](https://github.com/iboard/ax_webclient/actions/workflows/elixir.yml)

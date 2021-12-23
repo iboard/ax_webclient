@@ -5,6 +5,8 @@
     </center>
   </div>
 
+  <.pagination pagination={ @pagination } page={ @pagination[:page] } per_page={ @pagination[:per_page] } />
+
   <div id="posts" class="mt-10 mx-10 lg:mx-40">
     <%= for post <- @posts do %>
       <%= if !post.draft || WebClientWeb.SessionView.admin?(@conn) || !post.draft do %>
@@ -31,5 +33,8 @@
     <% end %>
   </div>
 
-<div class="float-right mb-0 mr-10 text-xs"><%= gettext "The End" %> #</div>
-<div class="clear-both m-0 p-0"></div>
+  <.pagination pagination={ @pagination } page={ @pagination[:page] } per_page={ @pagination[:per_page] } />
+
+<div class="clear-both mx-40 p-0">&nbsp;</div>
+<div class="active">&nbsp;</div>
+<div class="inactive">&nbsp;</div>

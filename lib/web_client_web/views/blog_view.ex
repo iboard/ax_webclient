@@ -19,6 +19,19 @@ defmodule WebClientWeb.BlogView do
     """
   end
 
+  def pagination(assigns) do
+    ~H"""
+    <div class="pagination">
+      <%= for p <- (1..@pagination[:pages]) do %>
+        <%= link("#{p}",
+          to: "/?page=#{p}&per_page=#{@pagination[:per_page]}",
+          class: "page " <> (if @pagination[:page] == p, do: "active", else: "inactive") )
+        %>
+      <% end %>
+    </div>
+    """
+  end
+
   defp build_image_tag(attrs) do
     inspect(attrs, pretty: true)
 

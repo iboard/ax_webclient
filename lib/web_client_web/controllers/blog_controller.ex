@@ -24,8 +24,27 @@ defmodule WebClientWeb.BlogController do
   def all_tags, do: @tags
 
   # GET /
+  def index(conn, %{"page" => page, "per_page" => per_page}) do
+    page = String.to_integer(page)
+    per_page = String.to_integer(per_page)
+
+    pages =
+      all_posts()
+      |> Enum.chunk_every(per_page)
+
+    posts = Enum.at(pages, page - 1)
+
+    pagination = [page: page, per_page: per_page, pages: Enum.count(pages)]
+
+    render(conn, "index.html",
+      posts: posts,
+      pagination: pagination,
+      tags: all_tags()
+    )
+  end
+
   def index(conn, _params) do
-    render(conn, "index.html", posts: all_posts(), tags: all_tags())
+    conn |> redirect(to: "/?page=1&per_page=2")
   end
 
   # GET /posts/:id

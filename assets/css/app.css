@@ -74,7 +74,7 @@ button.button-default { @apply bg-blue-600 hover:bg-blue-900 text-gray-100 hover
 .markdown h2 { @apply font-semibold text-3xl text-gray-600 pt-4 pb-2; }
 .markdown h3 { @apply font-semibold text-2xl text-gray-500 py-2; }
 .markdown h4 { @apply font-semibold text-xl text-gray-500 py-2; }
-.markdown p { @apply max-w-prose; }
+.markdown p { @apply max-w-prose leading-relaxed my-2; }
 .markdown * strong { @apply font-semibold; }
 .markdown a { @apply text-sky-600 hover:underline; }
 
@@ -102,6 +102,20 @@ code.inline {
 .elixir *.s { @apply text-green-900; }
 .elixir *.ss { @apply text-red-900; }
 
+
+.pagination {
+  @apply text-center text-xs;
+}
+
+.pagination .page {
+  @apply border px-2 py-1 m-1 inline-block
+  border rounded-md bg-zinc-100 shadow-md
+  hover:!bg-slate-600 hover:!shadow-lg
+  hover:!text-gray-100;
+}
+
+*.active { @apply !bg-slate-600 text-gray-100; }
+*.inactive { @apply !bg-slate-200 text-gray-800; }
 
 /* Original Phonix.css stuff. Maybe removed soon */
 /* Alerts and form errors used by phx.new */
@@ -222,3 +236,4 @@ code.inline {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+

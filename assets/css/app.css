@@ -104,7 +104,7 @@ code.inline {
 
 
 .pagination {
-  @apply text-center text-xs;
+  @apply text-center text-xs max-w-[100%] mx-10;
 }
 
 .pagination .page {

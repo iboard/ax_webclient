@@ -32,6 +32,9 @@ defmodule WebClientWeb.BlogController do
       all_posts()
       |> Enum.chunk_every(per_page)
 
+    page = if page > Enum.count(pages), do: Enum.count(pages), else: page
+    page = if page < 1, do: 1, else: page
+
     posts = Enum.at(pages, page - 1)
 
     pagination = [page: page, per_page: per_page, pages: Enum.count(pages)]

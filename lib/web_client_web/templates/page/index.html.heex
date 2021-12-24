@@ -2,6 +2,7 @@
   <center>
     <h1 class="title"><%= gettext "Welcome to %{name}", name: "Altex's WebClient!" %></h1>
     <p class="text-gray-600"><%= gettext("An Elixir/Phoenix/Liveview Scaffold, by Andreas Altendorfer") %></p>
+    <p>Based on <code>mix phx.new --live --no-ecto</code></p>
   </center>
 </section>
 
@@ -12,6 +13,22 @@
     </center>
   <% end %>
   <article>
+    <p class="font-semibold text-gray-500"><%= 
+          gettext ~s"""
+          As of December 2021, this is work in progess. The blog is more a playground and 
+          sandbox for the project than a blog of it's own sake.
+          """
+    %></p>
+    <p class="my-4 font-normal text-gray-500"><%= 
+          raw( gettext ~s"""
+                  If you want to make a suggestion or wanna post something, please fork 
+                  from %{url} and make a pull request through
+                  """, url: "<a class='text-sky-500' href='https://github.com/iboard/altex'>iboard/altex</a>" )
+    %> <a class="text-sky-500" href="https://github.com/iboard/altex/pulls">Github</a>.</p>
+    <p class="mb-4 font-normal text-gray-500"><%= 
+        raw(gettext "Posts can be added to <code>altex_iboard_cc/priv/posts/YYYY/MM-DD-Title</code>.") %>
+    </p>
+
     <p class="max-w-prose">
     <.markdown body={ 
     ~s"""
@@ -20,6 +37,8 @@
     is a bunch of independent _mix projects_ which can be used in any Elixir
     and Phoenix application. It supports a clean architecture and well structured
     code.
+
+    These projects are ...
 
     ## Mix projects
 

@@ -5,7 +5,13 @@
     </center>
   </div>
 
-  <.pagination pagination={ @pagination } page={ @pagination[:page] } per_page={ @pagination[:per_page] } />
+  <.pagination pagination={ @pagination } 
+         page={ @pagination[:page] } per_page={ @pagination[:per_page] }
+         tag={ @tag } tags={ @tags} />
+
+  <center class="font-xs">
+    <.tag_links tag={ @tag } tags={ @tags } pagination={ @pagination } />
+  </center>
 
   <div id="posts" class="mt-10 mx-10 lg:mx-40">
     <%= for post <- @posts do %>
@@ -33,7 +39,9 @@
     <% end %>
   </div>
 
-  <.pagination pagination={ @pagination } page={ @pagination[:page] } per_page={ @pagination[:per_page] } />
+  <.pagination pagination={ @pagination } 
+         page={ @pagination[:page] } per_page={ @pagination[:per_page] }
+         tag={ @tag } tags={ @tags} />
 
 <div class="clear-both mx-40 p-0">&nbsp;</div>
 <div class="active">&nbsp;</div>

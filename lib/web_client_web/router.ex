@@ -18,6 +18,7 @@ defmodule WebClientWeb.Router do
     pipe_through :browser
 
     get "/", BlogController, :index
+    get "/tags/:tag", BlogController, :tags
     get "/posts/:id", BlogController, :read
     get "/pages", PageController, :index
     get "/sign_in", SessionController, :new

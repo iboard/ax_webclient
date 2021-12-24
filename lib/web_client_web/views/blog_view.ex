@@ -19,12 +19,25 @@ defmodule WebClientWeb.BlogView do
     """
   end
 
+  def tag_links(assigns) do
+    ~H"""
+    <%= for tag <- @tags do %>
+      <%= if tag == @tag do %>
+        <a class="font-semibold" href={ "/tags/#{tag}?page=#{@pagination[:page]}&per_page=#{ @pagination[:per_page] }" }><%= tag %></a>
+      <% else %>
+        <a class="text-gray-400" href={ "/tags/#{tag}?page=#{@pagination[:page]}&per_page=#{ @pagination[:per_page] }" }><%= tag %></a>
+      <% end %>
+    <% end %>
+    """
+  end
+
   def pagination(assigns) do
     ~H"""
+    <% prefix = if @tag,  do: "/tags/#{assigns[:tag]}", else: "/" %>
     <div class="pagination">
       <%= for p <- (1..@pagination[:pages]) do %>
         <%= link("#{p}",
-          to: "/?page=#{p}&per_page=#{@pagination[:per_page]}",
+          to: "#{prefix}?page=#{p}&per_page=#{@pagination[:per_page]}",
           class: "page " <> (if @pagination[:page] == p, do: "active", else: "inactive") )
         %>
       <% end %>

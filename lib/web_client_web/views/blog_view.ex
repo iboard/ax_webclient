@@ -33,7 +33,7 @@ defmodule WebClientWeb.BlogView do
 
   def pagination(assigns) do
     ~H"""
-    <% prefix = if @tag,  do: "/tags/#{assigns[:tag]}", else: "/" %>
+    <% prefix = if @tag,  do: "/tags/#{@tag}", else: "/" %>
     <div class="pagination">
       <%= for p <- (1..@pagination[:pages]) do %>
         <%= link("#{p}",

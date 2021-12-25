@@ -64,15 +64,27 @@ defmodule WebClientWeb.BlogController do
   # GET /tags/:tag
   def tags(conn, %{"tag" => tag} = params) do
     page = (params["page"] || "1") |> String.to_integer()
-    per_page = (params["page"] || "1") |> String.to_integer()
+    per_page = (params["per_page"] || "2") |> String.to_integer()
 
-    posts =
+    pages =
       all_posts()
       |> Enum.filter(fn post ->
         String.downcase(tag) in Enum.map(post.tags, &String.downcase(&1))
       end)
+      |> Enum.chunk_every(per_page)
 
-    pagination = [page: page, per_page: per_page, pages: Enum.count(posts)]
+    page = if page > Enum.count(pages), do: Enum.count(pages), else: page
+    page = if page < 1, do: 1, else: page
+
+    posts = Enum.at(pages, page - 1)
+
+    pagination = [
+      tag: tag,
+      tags: all_tags(),
+      page: page,
+      per_page: per_page,
+      pages: Enum.count(posts)
+    ]
 
     render(conn, "index.html",
       posts: posts,

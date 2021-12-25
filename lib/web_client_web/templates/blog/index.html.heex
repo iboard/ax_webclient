@@ -11,7 +11,7 @@
          page={ @pagination[:page] } per_page={ @pagination[:per_page] }
          tag={ @tag } tags={ @tags} />
 
-  <center class="font-xs">
+  <center class="font-xs mx-10 mt-10">
     <.tag_links tag={ @tag } tags={ @tags } pagination={ @pagination } />
   </center>
 
@@ -25,7 +25,8 @@
               <div class="inline p-1 text-sm rounded bg-yellow-300">draft</div>
             <% end %>
           </div>
-          <div class="mt-0 text-sm text-gray-400"><%= post.author %>, <%= post.date %></div>
+          <div class="text-xs inline"><.post_tags post={ post } tag={ @tag } />
+          <div class="inline mt-0 text-sm text-gray-400"><%= post.author %>, <%= post.date %></div>
           <div class="markdown w-prose">
             <%= for iframe <- post.iframes |> Enum.take(1) do %>
               <div class="my-4 max-w-full"><%= raw Floki.raw_html(iframe) %></div>
@@ -33,7 +34,7 @@
             <%= for image <- post.images |> Enum.take(1) do %>
               <.image_preview image={ image } />
             <% end %>
-            <span class="font-bold" /><%= raw post.preview %>
+            <%= raw post.preview %>
           </div>
           <div class="text-gray-400 italic"><%= link gettext("read more..."), to: "/posts/#{post.id}" %></div>
         </div>

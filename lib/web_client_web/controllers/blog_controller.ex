@@ -83,7 +83,7 @@ defmodule WebClientWeb.BlogController do
       tags: all_tags(),
       page: page,
       per_page: per_page,
-      pages: Enum.count(posts)
+      pages: Enum.count(pages)
     ]
 
     render(conn, "index.html",

@@ -7,37 +7,19 @@
     </center>
   </div>
 
+  <center class="h-8 mx-10 mb-5 overflow-hidden hover:overflow-visible hover:h-auto">
+    <strong><%= @tag %></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <.tag_links tag={ @tag } tags={ @tags } pagination={ @pagination } />
+  </center>
+
   <.pagination pagination={ @pagination } 
          page={ @pagination[:page] } per_page={ @pagination[:per_page] }
          tag={ @tag } tags={ @tags} />
 
-  <center class="font-xs mx-10 mt-10">
-    <.tag_links tag={ @tag } tags={ @tags } pagination={ @pagination } />
-  </center>
-
   <div id="posts" class="mt-10 mx-10 lg:mx-40">
     <%= for post <- @posts do %>
       <%= if !post.draft || WebClientWeb.SessionView.admin?(@conn) || !post.draft do %>
-        <div class="post mb-10" id={ "post-#{post.id}" }>
-          <div class="my-1 text-2xl text-gray-600">
-            <%= link(post.title, to: "/posts/#{post.id}" ) %>
-            <%= if post.draft do %>
-              <div class="inline p-1 text-sm rounded bg-yellow-300">draft</div>
-            <% end %>
-          </div>
-          <div class="text-xs inline"><.post_tags post={ post } tag={ @tag } />
-          <div class="inline mt-0 text-sm text-gray-400"><%= post.author %>, <%= post.date %></div>
-          <div class="markdown w-prose">
-            <%= for iframe <- post.iframes |> Enum.take(1) do %>
-              <div class="my-4 max-w-full"><%= raw Floki.raw_html(iframe) %></div>
-            <% end %>
-            <%= for image <- post.images |> Enum.take(1) do %>
-              <.image_preview image={ image } />
-            <% end %>
-            <%= raw post.preview %>
-          </div>
-          <div class="text-gray-400 italic"><%= link gettext("read more..."), to: "/posts/#{post.id}" %></div>
-        </div>
+        <.post_preview post={ post } tag={ @tag } />
       <% end %>
     <% end %>
   </div>
@@ -45,6 +27,11 @@
   <.pagination pagination={ @pagination } 
          page={ @pagination[:page] } per_page={ @pagination[:per_page] }
          tag={ @tag } tags={ @tags} />
+
+  <center class="mx-10 mt-5">
+    <strong><%= @tag %></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <.tag_links tag={ @tag } tags={ @tags } pagination={ @pagination } />
+  </center>
 
 <div class="clear-both mx-40 p-0">&nbsp;</div>
 <div class="active">&nbsp;</div>

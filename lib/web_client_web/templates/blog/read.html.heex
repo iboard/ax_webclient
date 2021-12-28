@@ -7,8 +7,13 @@
         <%= if @post.draft do %>
           <span class="p-1 text-sm shadow bg-yellow-200"><%= gettext "draft" %></span>
         <% end %>
+        <div class="mt-0 text-sm text-gray-400 inline">– <%= @post.author %>, <%= @post.date %></div>
+      </div>
+      <div>
+        <div class="inline text-xs font-light">
+          <.post_tags post={ @post } tag={ nil } />
         </div>
-      <div class="mt-0 text-sm text-gray-400 inline">– <%= @post.author %>, <%= @post.date %></div>
+      </div>
       <div class="markdown w-prose"><%= raw @post.body %></div>
     </div>
     <div class="mx-10 lg:mx-40 mt-10 mb-40 text-sm text-gray-400"><%= link gettext("< back"), to: "/" %></div>

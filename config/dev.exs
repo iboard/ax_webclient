@@ -1,7 +1,7 @@
 import Config
 
 config :web_client, WebClientWeb.Endpoint,
-  http: [ip: {0, 0, 0, 0}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: (System.get_env("PORT") || "4000") |> String.to_integer()],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

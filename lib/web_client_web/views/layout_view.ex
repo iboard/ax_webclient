@@ -51,15 +51,13 @@ defmodule WebClientWeb.LayoutView do
     <footer>
       <section class="w-full p-10 flex w-full">
         <nav class="flex-1">
-          &copy; 2021 by
-          <a href="https://e-matrix.at" target="_blank">e-Matrix Innovations GmbH</a>
+          <.copyright />
         </nav>
         <nav class="flex-1">
           <%= Node.self() |> inspect %> | <%= Node.list() |> inspect %>
         </nav>
         <nav class="flex-end">
         <ul>
-          <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
           <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
             <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
           <% end %>
@@ -68,6 +66,28 @@ defmodule WebClientWeb.LayoutView do
       </section>
     </footer>
     """
+  end
+
+  def copyright(assigns) do
+    ~H"""
+      &copy; <%= current_year %> by <%= copyright_link %>
+    """
+  end
+
+  def copyright_link() do
+    link(copyright_owner(), to: copyright_url())
+  end
+
+  def copyright_url() do
+    System.get_env("COPYRIGHT_URL") || "https://github.com/iboard/altex"
+  end
+
+  def current_year() do
+    NaiveDateTime.utc_now().year
+  end
+
+  def copyright_owner() do
+    System.get_env("COPYRIGHT") || "Andi Altendorfer"
   end
 
   def link_highlight_js(assigns) do

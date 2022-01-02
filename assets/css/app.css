@@ -132,6 +132,13 @@ code.inline {
          ; 
 }
 
+figure {
+  @apply mb-4 text-xs italic text-right text-gray-400;
+}
+figure img {
+  @apply shadow-md rounded-sm;
+}
+
 /* Original Phonix.css stuff. Maybe removed soon */
 /* Alerts and form errors used by phx.new */
 .alert {

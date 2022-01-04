@@ -1,4 +1,4 @@
-<%= if !@post.draft || WebClientWeb.SessionView.admin?(@conn) do %>
+<%= if WebClientWeb.SessionView.allow?(@conn, :read, @post) do %>
   <article>
     <p class="float-right mx-10 lg:mx-40 mt-2 text-sm text-gray-400"><%= link gettext("< back"), to: "/" %></p>
 
@@ -12,6 +12,7 @@
       <div>
         <div class="inline text-xs font-light">
           <.post_tags post={ @post } tag={ nil } />
+          <.private_label post={ @post } />
         </div>
       </div>
       <div class="markdown w-prose"><%= raw @post.body %></div>

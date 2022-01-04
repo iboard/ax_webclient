@@ -1,6 +1,6 @@
 defmodule WebClient.Post do
   require Logger
-  defstruct ~w/id date author title body description tags draft images iframes/a
+  defstruct ~w/id date author title body description tags draft images iframes private/a
 
   def build(filename, attrs, body) do
     attrs = cast(attrs)
@@ -12,6 +12,7 @@ defmodule WebClient.Post do
         id: id,
         images: [],
         date: date,
+        private: nil,
         body: remote_images("https://www.iboard.cc", body)
       ] ++ (attrs |> cast() |> Map.to_list())
     )

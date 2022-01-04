@@ -75,6 +75,7 @@ defmodule WebClientWeb.BlogView do
       <div class="my-1 text-2xl text-gray-600">
         <%= link(@post.title, to: "/posts/#{@post.id}" ) %>
         <.draft_label post={ @post } />
+        <.private_label post={ @post } />
       </div>
       <div class="text-xs inline"><.post_tags post={ @post } tag={ @tag } /></div>
       <div class="inline mt-0 text-sm text-gray-400"><%= @post.author %>, <%= @post.date %></div>
@@ -92,6 +93,14 @@ defmodule WebClientWeb.BlogView do
     ~H"""
     <%= for iframe <- @post.iframes |> Enum.take(1) do %>
       <div class="my-4 max-w-full"><%= raw Floki.raw_html(iframe) %></div>
+    <% end %>
+    """
+  end
+
+  def private_label(assigns) do
+    ~H"""
+    <%= for p <- @post.private || [] do %>
+      <div class="inline p-1 text-sm rounded bg-red-300"><%= p %></div>
     <% end %>
     """
   end

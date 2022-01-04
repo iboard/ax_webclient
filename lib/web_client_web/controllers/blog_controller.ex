@@ -30,6 +30,7 @@ defmodule WebClientWeb.BlogController do
 
     pages =
       all_posts()
+      |> filter_allowed_posts(conn)
       |> Enum.chunk_every(per_page)
 
     page = if page > Enum.count(pages), do: Enum.count(pages), else: page
@@ -92,5 +93,11 @@ defmodule WebClientWeb.BlogController do
       tag: tag,
       tags: all_tags()
     )
+  end
+
+  defp filter_allowed_posts(posts, conn) do
+    Enum.filter(posts, fn post ->
+      WebClientWeb.SessionView.allow?(conn, :read, post)
+    end)
   end
 end

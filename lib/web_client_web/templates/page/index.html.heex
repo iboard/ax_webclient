@@ -9,15 +9,17 @@
 <section class="mx-10 lg:mx-40">
   <%= if Plug.Conn.get_session(@conn, :current_user) do %>
     <center>
-      <p class="font-semibold text-green-500"><%= gettext "You're logged in" %></p>
+      <p class="font-semibold text-green-500 mb-6">
+      <%= gettext "You're logged in as %{username}", %{username: SessionView.current_username(@conn)} %>
+      </p>
     </center>
   <% end %>
   <article>
     <p class="font-semibold text-gray-500"><%= 
           gettext ~s"""
-          As of December 2021, this is work in progess. The blog is more a playground and 
+          As of %{date}, this is work in progess. The blog is more a playground and 
           sandbox for the project than a blog of it's own sake.
-          """
+          """, %{ date: LayoutView.current_month_and_year() }
     %></p>
     <p class="my-4 font-normal text-gray-500"><%= 
           raw( gettext ~s"""

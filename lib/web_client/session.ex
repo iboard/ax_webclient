@@ -10,5 +10,12 @@ defmodule WebClient.Session do
     }
   end
 
+  def login("andi", "secret") do
+    %__MODULE__{
+      username: "andi",
+      role: :registered
+    }
+  end
+
   def login(_username, _password), do: nil
 end

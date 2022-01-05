@@ -1,5 +1,6 @@
 defmodule WebClientWeb.LayoutView do
   use WebClientWeb, :view
+  alias WebClientWeb.SessionView
 
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.
@@ -36,8 +37,8 @@ defmodule WebClientWeb.LayoutView do
         <div class="inline min-w-20 pr-10 text-gray-400">
           <%= gettext "Node: " %><%= System.get_env("ALTEX_INSTANCE") %>
         </div>
-        <%= if Plug.Conn.get_session(@conn, :current_user) do %>
-          <%= link gettext("Sign out"), to: "/sign_out" %>
+        <%= if username = SessionView.current_username(@conn) do %>
+          <%= username %>&nbsp;&dash;<%= link gettext("Sign out"), to: "/sign_out" %>
         <% else %>
           <%= link gettext("Sign in"), to: "/sign_in" %>
         <% end %>
@@ -84,6 +85,11 @@ defmodule WebClientWeb.LayoutView do
 
   def current_year() do
     NaiveDateTime.utc_now().year
+  end
+
+  def current_month_and_year() do
+    d = NaiveDateTime.utc_now()
+    "#{d.month}/#{d.year}"
   end
 
   def copyright_owner() do

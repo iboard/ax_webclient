@@ -101,19 +101,23 @@ defmodule WebClient.Post do
     Map.put(post, :preview, sanitize_preview(post.body))
   end
 
+  defp extract_first_words(parsed) do
+    [first | rest] = parsed
+    [Floki.text(first), Floki.text(rest)]
+  end
+
   defp sanitize_preview(html) do
     preview =
       case Floki.parse_document(html) do
         {:ok, parsed} ->
+          [first_words | rest] = extract_first_words(parsed)
+
           txt =
-            Floki.text(parsed)
+            Floki.text(rest)
             |> String.slice(0..255)
 
-          words = String.split(txt, " ")
-          first_words = String.split(txt, " ") |> Enum.take(5)
-          prefix = "<span class=\"font-bold\">#{Enum.join(first_words, " ")}</span>"
-          rest = Enum.drop(words, length(first_words)) |> Enum.join(" ")
-          prefix <> " " <> rest
+          "<span class=\"preview-first-text\">#{first_words}</span>" <>
+            " " <> txt
 
         {:error, doc} ->
           doc

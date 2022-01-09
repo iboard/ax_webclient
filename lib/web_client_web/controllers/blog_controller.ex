@@ -1,11 +1,17 @@
 defmodule WebClientWeb.BlogController do
   use WebClientWeb, :controller
 
+  if Mix.env() == :test do
+    @posts_path "test/fixtures/posts/**/*.md"
+  else
+    @posts_path "priv/posts/**/*.md"
+  end
+
   alias WebClient.Post
 
   use NimblePublisher,
     build: Post,
-    from: "priv/posts/**/*.md",
+    from: @posts_path,
     as: :posts,
     highlighters: [:makeup_elixir, :makeup_erlang]
 

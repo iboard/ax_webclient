@@ -71,7 +71,7 @@ defmodule WebClientWeb.LayoutView do
 
   def copyright(assigns) do
     ~H"""
-      &copy; <%= current_year %> by <%= copyright_link %>
+      &copy; <%= current_year() %> by <%= copyright_link() %>
     """
   end
 

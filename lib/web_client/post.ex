@@ -20,7 +20,7 @@ defmodule WebClient.Post do
 
   def normalize_tags(posts) do
     Enum.map(posts, fn post ->
-      %{post | tags: Enum.map(post.tags, &String.downcase/1) |> Enum.uniq()}
+      %{post | tags: Enum.map(post.tags || [], &String.downcase/1) |> Enum.uniq()}
     end)
   end
 

@@ -1,12 +1,12 @@
-<section class="hero">
-  <center>
-    <h1 class="title"><%= gettext "Welcome to %{name}", name: "Altex's WebClient!" %></h1>
-    <p class="text-gray-600"><%= gettext("An Elixir/Phoenix/Liveview Scaffold, by Andreas Altendorfer") %></p>
+<section class="hero bg-[url('/images/clean_coding_800.png')] bg-cover bg-center drop-shadow-lg text-gray-300">
+  <center class="backdrop-blur-sm p-10">
+    <h1 class="title !text-gray-200"><%= gettext "Welcome to %{name}", name: "Altex's WebClient!" %></h1>
+    <p class="text-gray-200"><%= gettext("An Elixir/Phoenix/Liveview Scaffold, by Andreas Altendorfer") %></p>
     <p>Based on <code>mix phx.new --live --no-ecto</code></p>
   </center>
 </section>
 
-<section class="mx-10 lg:mx-40">
+<section class="mx-10 lg:mx-40 max-w-prose">
   <%= if Plug.Conn.get_session(@conn, :current_user) do %>
     <center>
       <p class="font-semibold text-green-500 mb-6">

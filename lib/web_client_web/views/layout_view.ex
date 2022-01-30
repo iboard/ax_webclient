@@ -29,7 +29,7 @@ defmodule WebClientWeb.LayoutView do
     <header>
       <div><a href="/"><img class="logo" src={ Routes.static_path(WebClientWeb.Endpoint, "/images/logo.png") } /></a></div>
       <div class="flex-1">
-        <div class="inline"><%= link gettext("Altex"), to: "/pages" %></div>
+        <div class="inline"><%= link gettext("README"), to: "/pages" %></div>
         <div class="inline ml-4"><%= link gettext("T.C.B."), to: "/" %></div>
       </div>
       <div class="item-stretch"></div>

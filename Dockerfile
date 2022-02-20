@@ -20,7 +20,7 @@ COPY mix.exs mix.lock ./
 RUN mix deps.get --only $MIX_ENV
 
 # copy compile configuration files
-RUN mkdir config
+RUN mkdir -p config data/test data/prod 
 COPY config/config.exs config/$MIX_ENV.exs config/
 
 # compile dependencies
@@ -30,39 +30,42 @@ RUN mix deps.compile
 COPY priv priv
 COPY assets assets
 
-# Compile assets
-RUN mix assets.deploy
-
 # compile project
 COPY lib lib
 RUN mix compile
 
+# Compile assets
+RUN mix assets.deploy
+
 # copy runtime configuration file
 COPY config/runtime.exs config/
 
-# assemble release
+COPY scripts scripts
+
 RUN mix release
 
 # app stage
 FROM alpine:3.14.2 AS app
 
 ARG MIX_ENV
+ENV MIX_ENV=prod
 
 # install runtime dependencies
 RUN apk add --no-cache libstdc++ openssl ncurses-libs
 
 ENV USER="elixir"
+ENV USER_ID=1001
 
 WORKDIR "/home/${USER}/app"
 
 # Create  unprivileged user to run the release
 RUN \
     addgroup \
-    -g 1000 \
+    -g "${USER_ID}" \
     -S "${USER}" \
     && adduser \
     -s /bin/sh \
-    -u 1000 \
+    -u "${USER_ID}" \
     -G "${USER}" \
     -h "/home/${USER}" \
     -D "${USER}" \
@@ -72,9 +75,9 @@ RUN \
 USER "${USER}"
 
 # copy release executables
-COPY --from=build --chown="${USER}":"${USER}" /app/_build/"${MIX_ENV}"/rel/web_client ./
+COPY --from=build --chown="${USER}":"${USER}" /app/_build/"${MIX_ENV}"/rel/ax_webclient ./
 
-ENTRYPOINT ["bin/web_client"]
+ENTRYPOINT ["bin/ax_webclient"]
 
 CMD ["start"]
 

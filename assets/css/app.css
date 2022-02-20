@@ -77,7 +77,7 @@ button.button-default { @apply bg-blue-600 hover:bg-blue-900 text-gray-100 hover
 .markdown h4 { @apply font-semibold text-xl text-gray-500 py-2; }
 
 .markdown { @apply leading-relaxed text-base my-2; }
-.markdown p { @apply max-w-prose; }
+.markdown p { @apply my-2 max-w-prose; }
 .markdown * strong { @apply font-semibold; }
 .markdown a { @apply text-sky-600 hover:underline; }
 

@@ -19,7 +19,7 @@ defmodule WebClient.MixProject do
     # other utilities
     {:ex_doc, "~> 0.28"},
     # Blog
-    {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+    {:tailwind, "~> 0.1", only: [:dev,:prod]},
     {:earmark, git: "https://github.com/pragdave/earmark.git", override: true},
     {:earmark_parser, git: "https://github.com/RobertDober/earmark_parser.git", override: true},
     {:nimble_publisher, git: "https://github.com/dashbitco/nimble_publisher.git", override: true},
@@ -41,13 +41,13 @@ defmodule WebClient.MixProject do
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["Andreas Altendorfer"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/iboard/ax_webclient"}
+      links: %{"GitHub" => "https://github.com/iboard/web_client"}
     ]
   end
 
   def project do
     [
-      app: :web_client,
+      app: :ax_webclient,
       version: "0.1.1",
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),

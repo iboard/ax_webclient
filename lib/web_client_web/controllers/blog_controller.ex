@@ -57,7 +57,7 @@ defmodule WebClientWeb.BlogController do
   end
 
   def index(conn, _params) do
-    conn |> redirect(to: "/?page=1&per_page=2")
+    conn |> redirect(to: "/?page=1&per_page=10")
   end
 
   # GET /posts/:id

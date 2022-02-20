@@ -2,11 +2,14 @@ defmodule WebClientWeb.LayoutView do
   use WebClientWeb, :view
   alias WebClientWeb.SessionView
 
+  @ts "#{:os.system_time(:millisecond)}"
+
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.
   @compile {:no_warn_undefined, {Routes, :live_dashboard_path, 2}}
 
   def html_head(assigns) do
+    ts = @ts
     ~H"""
     <head>
       <meta charset="utf-8"/>
@@ -15,10 +18,10 @@ defmodule WebClientWeb.LayoutView do
       <.link_highlight_js />
       <%= csrf_meta_tag() %>
       <%= live_title_tag assigns[:page_title] || "WebClient", suffix: " · Altex" %>
-      <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+      <link phx-track-static rel="stylesheet" href={ "/assets/app.css?ts=#{ts}" }) />
       <script defer phx-track-static
               type="text/javascript"
-              src={ Routes.static_path(@conn, "/assets/app.js") }>
+              src={ Routes.static_path(@conn, "/assets/app.js?ts=#{ts}") }>
       </script>
     </head>
     """

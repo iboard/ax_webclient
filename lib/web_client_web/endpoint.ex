@@ -1,5 +1,5 @@
 defmodule WebClientWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :web_client
+  use Phoenix.Endpoint, otp_app: :ax_webclient
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -18,7 +18,7 @@ defmodule WebClientWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :web_client,
+    from: :ax_webclient,
     gzip: false,
     only: ~w(assets fonts images favicon.ico robots.txt)
 

@@ -20,5 +20,5 @@ defmodule WebClientWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :web_client
+  use Gettext, otp_app: :ax_webclient
 end

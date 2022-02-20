@@ -48,7 +48,7 @@ defmodule WebClient.MixProject do
   def project do
     [
       app: :ax_webclient,
-      version: "0.1.1",
+      version: "0.1.2",
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:gettext] ++ Mix.compilers(),

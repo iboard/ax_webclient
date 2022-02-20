@@ -1,7 +1,9 @@
 defmodule WebClientWeb.BlogController do
   use WebClientWeb, :controller
 
-  if Mix.env() == :test do
+  @env Mix.env() 
+
+  if @env == :test do
     @posts_path "test/fixtures/posts/**/*.md"
   else
     @posts_path "priv/posts/**/*.md"

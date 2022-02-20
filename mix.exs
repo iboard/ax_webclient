@@ -1,6 +1,33 @@
 defmodule WebClient.MixProject do
   use Mix.Project
 
+  @deps [
+    # Phoenix and tools
+    {:phoenix, "~> 1.6.6"},
+    {:phoenix_html, "~> 3.0"},
+    {:phoenix_live_reload, "~> 1.2", only: :dev},
+    {:phoenix_live_view, "~> 0.17.5"},
+    {:floki, ">= 0.30.0"},
+    {:phoenix_live_dashboard, "~> 0.6"},
+    {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
+    {:swoosh, "~> 1.3"},
+    {:telemetry_metrics, "~> 0.6"},
+    {:telemetry_poller, "~> 1.0"},
+    {:gettext, "~> 0.18"},
+    {:jason, "~> 1.2"},
+    {:plug_cowboy, "~> 2.5"},
+    # other utilities
+    {:ex_doc, "~> 0.28"},
+    # Blog
+    {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+    {:earmark, git: "git@github.com:pragdave/earmark.git", override: true},
+    {:earmark_parser, git: "git@github.com:RobertDober/earmark_parser.git", override: true},
+    {:nimble_publisher, git: "git@github.com:dashbitco/nimble_publisher.git", override: true},
+    {:makeup_elixir, ">= 0.0.0"},
+    {:makeup_erlang, ">= 0.0.0"},
+    # Altex
+    {:axrepo, "~> 0.1"}
+  ]
   defp description() do
     ~s"""
     A simple Phoenix/Liveview client for [Altex](https://github.com/iboard/altex).
@@ -66,29 +93,7 @@ defmodule WebClient.MixProject do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [
-      # Phoenix and tools
-      {:phoenix, "~> 1.6.4"},
-      {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.17.5"},
-      {:floki, ">= 0.30.0"},
-      {:phoenix_live_dashboard, "~> 0.6"},
-      {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
-      {:swoosh, "~> 1.3"},
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.18"},
-      {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"},
-      # Blog
-      {:nimble_publisher, "~> 0.1"},
-      {:makeup_elixir, ">= 0.0.0"},
-      {:makeup_erlang, ">= 0.0.0"},
-      {:ex_doc, "~> 0.26", only: :dev, runtime: false},
-      # Altex
-      {:axrepo, "~> 0.1"}
-    ]
+    @deps
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
@@ -100,7 +105,7 @@ defmodule WebClient.MixProject do
   defp aliases do
     [
       setup: ["deps.get"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
   end
 end

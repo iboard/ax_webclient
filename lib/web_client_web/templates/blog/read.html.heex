@@ -2,7 +2,7 @@
   <article>
     <p class="float-right mx-10 lg:mx-40 mt-2 text-sm text-gray-400"><%= link gettext("< back"), to: "/" %></p>
 
-    <div class="post mb-10 mx-10 lg:mx-40" id={ @post.id } >
+    <div class="post mb-10 mx-10" id={ @post.id } >
       <div class="my-1 text-xl font-semibold text-gray-400 inline"><%= @post.title %>
         <%= if @post.draft do %>
           <span class="p-1 text-sm shadow bg-yellow-200"><%= gettext "draft" %></span>

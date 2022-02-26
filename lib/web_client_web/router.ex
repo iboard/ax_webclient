@@ -16,11 +16,16 @@ defmodule WebClientWeb.Router do
 
   scope "/", WebClientWeb do
     pipe_through :browser
-
+2
+    # Posts
     get "/", BlogController, :index
     get "/tags/:tag", BlogController, :tags
     get "/posts/:id", BlogController, :read
+
+    # Pages
     get "/pages", PageController, :index
+
+    # Session
     get "/sign_in", SessionController, :new
     post "/sign_in", SessionController, :create
     get "/sign_out", SessionController, :delete

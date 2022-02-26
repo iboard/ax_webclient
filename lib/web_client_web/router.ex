@@ -16,7 +16,7 @@ defmodule WebClientWeb.Router do
 
   scope "/", WebClientWeb do
     pipe_through :browser
-2
+
     # Posts
     get "/", BlogController, :index
     get "/tags/:tag", BlogController, :tags
